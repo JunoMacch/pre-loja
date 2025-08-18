@@ -1,8 +1,10 @@
 package com.webservice.webservice.config;
 
+import com.webservice.webservice.entities.Category;
 import com.webservice.webservice.entities.Order;
 import com.webservice.webservice.entities.User;
 import com.webservice.webservice.entities.enums.OrderStatus;
+import com.webservice.webservice.repositories.CategoryRepository;
 import com.webservice.webservice.repositories.OrderRepository;
 import com.webservice.webservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,16 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
 
         User u1 = new User(null, "Jonas Johnson Jensen", "jonas@email.com", "911223344", "123456");
         User u2 = new User(null, "Douglas Diogenes Dantos", "douglas@email.com", "944332211", "123456");
@@ -36,6 +45,7 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 
     }
 }
