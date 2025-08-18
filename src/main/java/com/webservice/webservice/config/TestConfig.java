@@ -2,10 +2,12 @@ package com.webservice.webservice.config;
 
 import com.webservice.webservice.entities.Category;
 import com.webservice.webservice.entities.Order;
+import com.webservice.webservice.entities.Product;
 import com.webservice.webservice.entities.User;
 import com.webservice.webservice.entities.enums.OrderStatus;
 import com.webservice.webservice.repositories.CategoryRepository;
 import com.webservice.webservice.repositories.OrderRepository;
+import com.webservice.webservice.repositories.ProductRepository;
 import com.webservice.webservice.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +30,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -35,6 +40,15 @@ public class TestConfig implements CommandLineRunner {
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
+
+        Product p1 = new Product(null, "The Lord of the Rings", "Livro FODA", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "TV 40'", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Macbook", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "PC para rodar jogos high-end", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Livro qualquer", 100.99, "");
+
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+        productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 
         User u1 = new User(null, "Jonas Johnson Jensen", "jonas@email.com", "911223344", "123456");
         User u2 = new User(null, "Douglas Diogenes Dantos", "douglas@email.com", "944332211", "123456");
@@ -45,7 +59,6 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
-        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 
     }
 }
