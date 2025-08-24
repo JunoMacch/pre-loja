@@ -17,7 +17,7 @@ public class Category {
     private String name;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories") //o nome que vai em mappedBy é o nome do Atributo da classe java e não o da tabela do BD
     private Set<Product> products = new HashSet<>();
 
     public Category() {
